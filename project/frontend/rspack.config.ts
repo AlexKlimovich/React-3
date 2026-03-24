@@ -22,6 +22,18 @@ export default defineConfig({
   },
   module: {
     rules: [
+      // 👇 ПРАВИЛА ДЛЯ CSS (ДОБАВЛЕНО)
+      {
+        test: /\.module\.css$/,
+        type: 'css/module', // CSS Modules
+      },
+      {
+        test: /\.css$/,
+        exclude: /\.module\.css$/,
+        type: 'css', // Обычные CSS
+      },
+
+      // 👇 ОСТАЛЬНЫЕ ПРАВИЛА
       {
         test: /\.svg$/,
         type: 'asset',
@@ -76,7 +88,7 @@ export default defineConfig({
     ],
   },
   experiments: {
-    css: true,
+    css: true, // 👈 Оставляем включённым
   },
   devServer: {
     port: 3000,

@@ -29,6 +29,7 @@ export default defineConfig([
       'react-hooks/set-state-in-effect': 'off', // TODO: включить!
       '@typescript-eslint/no-unsafe-call': 'off', // TODO: включить!
       'react-refresh/only-export-components': 'off', // TODO: включить!
+
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -41,6 +42,8 @@ export default defineConfig([
           ignoreRestSiblings: true,
         },
       ],
+
+      '@typescript-eslint/no-floating-promises': 'off',
     },
   },
 ]);

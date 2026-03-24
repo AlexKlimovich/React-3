@@ -1,18 +1,31 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-const PORT = 8081;
+const PORT = 8082;
 
-app.use(express.text({ type: '*/*' }));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept",
+  );
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
+app.use(express.text({ type: "*/*" }));
 
 const DATA = {
   users: [
     {
-      name: 'Ihar',
+      name: "Ihar",
       age: 32,
-      email: 'some@gmail.com',
+      email: "some@gmail.com",
       isAdmin: true,
-      login: 'Gary',
+      login: "Gary",
       pass: 123,
     },
   ],
@@ -27,17 +40,7 @@ const setCustomTimeout = (cb) => {
 };
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-  next();
-});
-
-app.use((req, res, next) => {
-  if (typeof req.body === 'string' && req.body.length > 0) {
+  if (typeof req.body === "string" && req.body.length > 0) {
     try {
       req.body = JSON.parse(req.body);
     } catch (e) {}
@@ -45,18 +48,30 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/api/login', (req, res) => {
+app.use((req, res, next) => {
+  if (req.url === "/api/login" && req.method === "POST") {
+    console.log("=== DEBUG LOGIN REQUEST ===");
+    console.log("Headers:", req.headers);
+    console.log("Raw body type:", typeof req.body);
+    console.log("Raw body:", req.body);
+  }
+  next();
+});
+
+app.post("/api/login", (req, res) => {
   setCustomTimeout(() => {
     const { login, pass } = req.body;
 
-    const findetUser = DATA.users.find((user) => user.login === login && user.pass === pass);
+    const findetUser = DATA.users.find(
+      (user) => user.login === login && user.pass === pass,
+    );
     if (findetUser) {
       const { pass, ...userWithoutPass } = findetUser;
       res.json({
         data: userWithoutPass,
       });
     } else {
-      res.status(404).send(JSON.stringify('Не зареган'));
+      res.status(404).send(JSON.stringify("Не зареган"));
     }
   });
 });

@@ -1,16 +1,28 @@
 export class LSService<T> {
-  constructor(private readonly key: string) {}
+  private key: string;
 
-  get(): T | null {
-    const value = localStorage.getItem(this.key);
-    if (value) {
-      return JSON.parse(value) as T;
-    }
-
-    return null;
+  constructor(key: string) {
+    this.key = key;
   }
 
-  set(value: T) {
-    localStorage.setItem(this.key, JSON.stringify(value));
+  get(): T | null {
+    try {
+      const item = localStorage.getItem(this.key);
+      return item ? JSON.parse(item) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  set(data: T): void {
+    localStorage.setItem(this.key, JSON.stringify(data));
+  }
+
+  remove(): void {
+    localStorage.removeItem(this.key);
+  }
+
+  clear(): void {
+    localStorage.clear();
   }
 }
