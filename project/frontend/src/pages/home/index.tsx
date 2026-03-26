@@ -1,13 +1,19 @@
 import { useAuthContext } from '@/contexts/auth-context';
-import { Link } from 'react-router-dom'; // 👈 Импортируем Link
-import { ROUTES } from '@/constants/routes';
+import './Home.css';
+// import { Link } from 'react-router-dom'; // 👈 Импортируем Link
+// import { ROUTES } from '@/constants/routes';
+// import ThemeToggle from '@/components/ThemeToggle';
 
 export const Home = () => {
   const { user, logout } = useAuthContext() ?? {};
 
   return (
     <>
-      <div>Welcome to our App dear {user?.name}</div>
+      <div>
+        <h1 className="btn-center">Welcome to our App dear {user?.name}</h1>
+      </div>
+      {/* <ThemeToggle />
+      <br></br>
       <br></br>
       <div>
         <Link to={ROUTES.notice}>
@@ -20,8 +26,13 @@ export const Home = () => {
           <button>ToDoList</button>
         </Link>
       </div>
-      <div>
-        <button onClick={logout} style={{ marginTop: 20 }}>
+      <div>*/}
+      <div className="btn-center">
+        <button
+          onClick={logout}
+          className="logout-btn"
+          style={{ marginTop: 20 }}
+        >
           Logout
         </button>
       </div>

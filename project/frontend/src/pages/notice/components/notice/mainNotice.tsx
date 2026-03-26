@@ -4,7 +4,6 @@ import {
   useDragndrop,
   type Coords,
 } from '@/pages/notice/components/notice/useDragndrop';
-import { useThemeContext } from '@/pages/notice/contexts/ThemeContext';
 
 type Props = BaseNotice & {
   onCardRemove: (id: string) => void;
@@ -16,9 +15,6 @@ const RemoveButton = ({
   id,
   onCardRemove,
 }: Pick<Props, 'onCardRemove' | 'id'>) => {
-  const theme = useThemeContext();
-  console.log(theme);
-
   return <button onClick={() => onCardRemove(id)}>X</button>;
 };
 

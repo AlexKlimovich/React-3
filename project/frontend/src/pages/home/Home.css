@@ -1,0 +1,22 @@
+.btn-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout-btn {
+  margin-bottom: 20px;
+  background: #646cff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  width: 200px;
+  height: 32px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background: #535bf2;
+}

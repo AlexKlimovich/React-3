@@ -1,0 +1,114 @@
+.notice-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.notice-add-btn {
+  margin-bottom: 20px;
+  background: #646cff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  width: 200px;
+  height: 32px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.notice-add-btn:hover {
+  background: #535bf2;
+}
+
+.todolist-widget {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  max-height: 80vh;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark .todolist-widget {
+  background: #2a2a2a;
+  border-color: #444;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.widget-header {
+  padding: 12px 16px;
+  background: #646cff;
+  color: white;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.widget-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+body.dark .widget-header {
+  background: #444;
+  border-bottom-color: #555;
+}
+
+.widget-body {
+  padding: 12px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .todolist-widget {
+    top: auto;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    max-height: 40vh;
+  }
+}
+
+/* src/pages/notice/components/notice/mainNotice.css */
+
+.notice-card {
+  /* ✅ Обязательно для работы drag-n-drop */
+  position: absolute;
+
+  /* ✅ Курсор при наведении */
+  cursor: grab;
+
+  /* ✅ Остальные стили */
+  min-width: 200px;
+  min-height: 150px;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  transition: box-shadow 0.2s;
+}
+
+.notice-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Тёмная тема */
+body.dark .notice-card {
+  background: #2a2a2a;
+  border-color: #444;
+  color: #fff;
+}

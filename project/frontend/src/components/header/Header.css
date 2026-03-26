@@ -1,0 +1,154 @@
+/* src/components/Header.css */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  min-height: 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+body.dark .header {
+  background: #1a1a1a;
+  border-bottom-color: #333;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #646cff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.logo:hover {
+  color: #535bf2;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.nav-link:hover {
+  background: #f0f0f0;
+  color: #646cff;
+}
+
+.nav-link.active {
+  background: #646cff;
+  color: white;
+}
+
+body.dark .nav-link {
+  color: #fff;
+}
+
+body.dark .nav-link:hover {
+  background: #333;
+  color: #646cff;
+}
+
+body.dark .nav-link.active {
+  background: #444;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 👇 ВАША оригинальная кнопка темы — восстановленные стили */
+.theme-toggle {
+  padding: 8px 16px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  white-space: nowrap; /* Чтобы текст не переносился */
+}
+
+.theme-toggle:hover {
+  background: #e0e0e0;
+  border-color: #999;
+}
+
+.theme-toggle:active {
+  transform: scale(0.98);
+}
+
+/* Тёмная тема для кнопки */
+body.dark .theme-toggle {
+  background: #333;
+  border-color: #555;
+  color: #fff;
+}
+
+body.dark .theme-toggle:hover {
+  background: #444;
+  border-color: #777;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-left {
+    gap: 16px;
+    flex: 1;
+  }
+
+  .nav {
+    gap: 12px;
+    font-size: 0.9rem;
+  }
+
+  .theme-toggle {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+
+  .nav {
+    display: none; /* Можно скрыть навигацию на очень маленьких экранах */
+  }
+}

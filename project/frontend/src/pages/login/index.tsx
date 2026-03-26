@@ -18,6 +18,7 @@ export const Login = () => {
         onChange={({ target: { value } }) => setLogin(value)}
         placeholder="Input login"
       />
+
       <br />
       <input
         value={pass}
