@@ -3,7 +3,7 @@ import { useAuthContext } from '@/contexts/auth-context';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-export const Login = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   const { login: fetchLogin } = useAuthContext() ?? {};
@@ -42,3 +42,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;

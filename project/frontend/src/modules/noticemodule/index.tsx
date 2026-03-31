@@ -1,8 +1,8 @@
 import './notice.css';
 import { useCallback, useEffect, useState } from 'react';
 import type { BaseNotice } from './types';
-import { Notice } from './components/notice/mainNotice';
-import { NoticesStore } from './services/localStorage';
+import { Notice } from '@/modules/noticemodule/components/notice/mainNotice';
+import { NoticesStore } from '@/services/ls/localStorage';
 import { type Coords } from './components/notice/useDragndrop';
 
 export function NoticePageModule() {
@@ -63,7 +63,7 @@ export function NoticePageModule() {
   };
 
   useEffect(() => {
-    syncNoticeStorage.sync(notices);
+    syncNoticeStorage.sync<BaseNotice[]>(notices);
   }, [notices, syncNoticeStorage]);
   return (
     <div className="notice-page">

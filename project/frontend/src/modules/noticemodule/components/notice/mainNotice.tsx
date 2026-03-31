@@ -1,9 +1,9 @@
-import type { BaseNotice } from '@/pages/notice/types';
+import type { BaseNotice } from '@/modules/noticemodule/types';
 import { style } from './style';
 import {
   useDragndrop,
   type Coords,
-} from '@/pages/notice/components/notice/useDragndrop';
+} from '@/modules/noticemodule/components/notice/useDragndrop';
 
 type Props = BaseNotice & {
   onCardRemove: (id: string) => void;

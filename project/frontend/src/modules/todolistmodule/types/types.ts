@@ -17,7 +17,8 @@ export type TaskFormProps = {
 export interface Task {
   id: number;
   text: string;
-  done: boolean;
+  completed: boolean;
+
   priority: Priority;
   createdAt: string;
 }
@@ -41,3 +42,15 @@ export const PRIORITY_LABELS = {
 } as const;
 
 export type Priority = keyof typeof PRIORITY_LABELS;
+
+export interface TaskStats {
+  total: number;
+  completed: number;
+  pending: number;
+  byPriority: {
+    high: number;
+    medium: number;
+    low: number;
+  };
+  mostPopularPriority: string;
+}

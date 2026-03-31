@@ -4,7 +4,7 @@ import './Home.css';
 // import { ROUTES } from '@/constants/routes';
 // import ThemeToggle from '@/components/ThemeToggle';
 
-export const Home = () => {
+const Home = () => {
   const { user, logout } = useAuthContext() ?? {};
 
   return (
@@ -39,3 +39,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

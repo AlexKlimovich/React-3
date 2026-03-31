@@ -3,7 +3,7 @@ import type {
   Theme,
   ThemeContextType,
   ThemeProviderProps,
-} from '@/pages/todolist/types/types';
+} from '@/modules/todolistmodule/types/types';
 
 export const ThemeContext = createContext<ThemeContextType | null>(null);
 

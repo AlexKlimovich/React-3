@@ -1,13 +1,15 @@
 import './ToDoList.css';
-// import ThemeToggle from './components/ThemeToggle';
 import TaskForm from './components/TaskForm';
-import { useCallback, useRef } from 'react';
-import type { Priority, Task } from './types/types';
-import { useLocalStorage } from './hooks/useLocalStorage';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { Priority, Task } from '@/modules/todolistmodule/types/types';
+import { TasksStorage } from '@/services/ls/localStorage';
 import TaskList from './components/TaskList';
+import { Analytics } from '@/modules/todolistmodule/components/Analytics';
 
-export function ToDoList() {
-  const [savedTasks, setSavedTasks] = useLocalStorage<Task[]>('tasks', []);
+export function ToDoListModule() {
+  const [syncTaskStorage] = useState<TasksStorage>(() => new TasksStorage());
+  const [savedTasks, setSavedTasks] = useState<Task[]>(syncTaskStorage.tasks);
+
   const listRef = useRef<HTMLElement>(null);
 
   const addTask = useCallback(
@@ -17,7 +19,7 @@ export function ToDoList() {
           id: Date.now(),
           text,
           priority,
-          done: false,
+          completed: false,
           createdAt: new Date().toISOString(),
         },
         ...prev,
@@ -26,22 +28,11 @@ export function ToDoList() {
     [setSavedTasks],
   );
 
-  // dispatch({
-  //   type: 'ADD',
-  //   payload: {
-  //     id: Date.now(),
-  //     text,
-  //     priority,
-  //     done: false,
-  //     createdAt: new Date().toISOString(),
-  // },
-  // });
-
   const toggleTask = useCallback(
     (id: number) => {
       setSavedTasks((prev: Task[]) =>
         prev.map((task) =>
-          task.id === id ? { ...task, done: !task.done } : task,
+          task.id === id ? { ...task, done: !task.completed } : task,
         ),
       );
     },
@@ -54,6 +45,10 @@ export function ToDoList() {
     },
     [setSavedTasks],
   );
+
+  useEffect(() => {
+    syncTaskStorage.sync<Task[]>(savedTasks);
+  }, [savedTasks, syncTaskStorage]);
 
   return (
     <div className="wrapper">
@@ -72,8 +67,7 @@ export function ToDoList() {
           <TaskForm onAdd={addTask} />
         </section>
 
-        {/* <Analytics tasks={tasks} />
-         */}
+        <Analytics tasks={savedTasks} />
         <section className="list-section" ref={listRef}>
           <h2 className="section-title">📝 Задачи</h2>
           <TaskList
@@ -86,5 +80,3 @@ export function ToDoList() {
     </div>
   );
 }
-
-export default ToDoList;

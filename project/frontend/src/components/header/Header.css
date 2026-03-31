@@ -1,5 +1,3 @@
-/* src/components/Header.css */
-
 .header {
   position: sticky;
   top: 0;
@@ -8,7 +6,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
-  min-height: 60px;
+  /* min-height: 60px; */
   background: #ffffff;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -81,7 +79,6 @@ body.dark .nav-link.active {
   align-items: center;
 }
 
-/* 👇 ВАША оригинальная кнопка темы — восстановленные стили */
 .theme-toggle {
   padding: 8px 16px;
   background: #f0f0f0;
@@ -116,39 +113,4 @@ body.dark .theme-toggle {
 body.dark .theme-toggle:hover {
   background: #444;
   border-color: #777;
-}
-
-/* Адаптив для мобильных */
-@media (max-width: 768px) {
-  .header {
-    padding: 10px 16px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .header-left {
-    gap: 16px;
-    flex: 1;
-  }
-
-  .nav {
-    gap: 12px;
-    font-size: 0.9rem;
-  }
-
-  .theme-toggle {
-    padding: 6px 12px;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .theme-toggle {
-    font-size: 0.8rem;
-    padding: 4px 10px;
-  }
-
-  .nav {
-    display: none; /* Можно скрыть навигацию на очень маленьких экранах */
-  }
 }

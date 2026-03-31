@@ -9,15 +9,16 @@ const TaskItem = memo(function TaskItem({
 }: TaskItemProps) {
   return (
     <li
-      className={`task-item ${task.done ? 'done' : ''} priority-${task.priority}`}
+      className={`task-item ${task.completed ? 'done' : ''} priority-${task.priority}`}
     >
       <input
         type="checkbox"
-        checked={task.done}
+        checked={task.completed}
         onChange={() => onToggle(task.id)}
       />
-      <span className="task-text">{task.text}</span>
-      <span className="task-priority">{PRIORITY_LABELS[task.priority]}</span>
+      <span className="task-id">{task.id} </span>
+      <span className="task-text">{task.text} </span>
+      <span className="task-priority">{PRIORITY_LABELS[task.priority]} </span>
       <span className="task-date">
         {new Date(task.createdAt).toLocaleDateString('ru-RU')}
       </span>
