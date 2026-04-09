@@ -1,40 +1,44 @@
 import { memo } from 'react';
-import type { TaskListProps } from '@/modules/todolistmodule/types/types';
+import type { Task, Priority } from '@/modules/todolistmodule/types/types';
 import TaskItem from './TaskItem';
+
+interface TaskListProps {
+  tasks: Task[];
+  onToggle: (id: number) => void;
+  onDelete: (id: number) => void;
+  onStatusChange: (id: number, status: string) => void;
+  onPriorityChange: (id: number, priority: Priority) => void;
+  onEdit: (task: Task) => void;
+  editingTaskId: number | null;
+}
 
 const TaskList = memo(function TaskList({
   tasks,
-  onToggle,
   onDelete,
+  onStatusChange,
+  onPriorityChange,
+  onEdit,
+  editingTaskId,
 }: TaskListProps) {
   if (tasks.length === 0) {
     return <p className="empty-state">Задач пока нет. Добавьте первую! 👆</p>;
   }
 
   return (
-    <table className="task-table">
-      <thead>
-        <tr>
-          <th className="col-checkbox">Статус</th>
-          <th className="col-id">ID</th>
-          <th className="col-title">Название</th>
-          <th className="col-priority">Приоритет</th>
-          <th className="col-due">Дата создания</th>
-          <th className="col-actions">Действия</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {tasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            onToggle={onToggle}
-            onDelete={onDelete}
-          />
-        ))}
-      </tbody>
-    </table>
+    <ul className="task-list-ul">
+      {tasks.map((task, index) => (
+        <TaskItem
+          key={task.id}
+          task={task}
+          index={index}
+          isEditing={editingTaskId === task.id}
+          onDelete={onDelete}
+          onStatusChange={onStatusChange}
+          onPriorityChange={onPriorityChange}
+          onEdit={onEdit}
+        />
+      ))}
+    </ul>
   );
 });
 

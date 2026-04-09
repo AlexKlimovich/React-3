@@ -3,4 +3,5 @@ export const ROUTES = {
   home: '/home',
   notice: '/notice',
   todolist: '/todolist',
+  weather: '/weather',
 };

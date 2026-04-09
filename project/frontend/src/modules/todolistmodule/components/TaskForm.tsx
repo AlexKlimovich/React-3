@@ -3,6 +3,7 @@ import type { TaskFormProps, Priority } from '../types/types.ts';
 
 const TaskForm = memo(function TaskForm({ onAdd }: TaskFormProps) {
   const [text, setText] = useState('');
+  const [desc, setDesc] = useState('');
   const [priority, setPriority] = useState<Priority>('medium');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -12,10 +13,12 @@ const TaskForm = memo(function TaskForm({ onAdd }: TaskFormProps) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const trimmed = text.trim();
-    if (!trimmed) return;
-    onAdd(trimmed, priority);
+    const trimmedText = text.trim();
+    const trimmedDesc = desc.trim();
+    if (!trimmedText || !trimmedDesc) return;
+    onAdd(trimmedText, trimmedDesc, priority);
     setText('');
+    setDesc('');
     setPriority('medium');
     inputRef.current?.focus();
   };
@@ -29,6 +32,14 @@ const TaskForm = memo(function TaskForm({ onAdd }: TaskFormProps) {
         placeholder="Новая задача..."
         value={text}
         onChange={(e) => setText(e.target.value)}
+      />
+      <input
+        // ref={inputRef}
+        className="task-input"
+        type="text"
+        placeholder="Описание задачи..."
+        value={desc}
+        onChange={(e) => setDesc(e.target.value)}
       />
       <select
         className="priority-select"

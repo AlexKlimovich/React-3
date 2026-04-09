@@ -23,6 +23,8 @@
     "@rspack/plugin-react-refresh": "^1.6.0",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
+    "@types/yandex-maps": "^2.1.36",
+    "@yandex/ymaps3-types": "^1.0.19072130",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",

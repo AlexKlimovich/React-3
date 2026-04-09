@@ -27,6 +27,9 @@ export const Header = () => {
           <Link to={ROUTES.todolist} className={isActive(ROUTES.todolist)}>
             Tasks
           </Link>
+          <Link to={ROUTES.weather} className={isActive(ROUTES.weather)}>
+            Weather
+          </Link>
         </nav>
       </div>
 

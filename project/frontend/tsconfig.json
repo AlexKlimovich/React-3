@@ -5,20 +5,15 @@
     "noEmit": true,
     "skipLibCheck": true,
     "useDefineForClassFields": true,
-
-    /* modules */
     "module": "ESNext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
-
-    /* type checking */
     "strict": true,
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-
     "sourceMap": true,
     "baseUrl": ".",
     "outDir": "./dist/",
@@ -32,9 +27,11 @@
     "noImplicitAny": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
+
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src/**/*", "src/types/**/*.d.ts"]
 }

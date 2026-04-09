@@ -9,6 +9,7 @@ const Login = lazy(() => import('./pages/login'));
 const Home = lazy(() => import('./pages/home'));
 const NoticePage = lazy(() => import('./pages/notice'));
 const ToDoList = lazy(() => import('./pages/todolist'));
+const PointsPage = lazy(() => import('./pages/weather'));
 
 export function App() {
   const { isLogged } = useAuthContext() ?? {};
@@ -39,6 +40,13 @@ export function App() {
           path={ROUTES.todolist}
           element={
             isLogged ? <ToDoList /> : <Navigate to={ROUTES.login} replace />
+          }
+        />
+
+        <Route
+          path={ROUTES.weather}
+          element={
+            isLogged ? <PointsPage /> : <Navigate to={ROUTES.login} replace />
           }
         />
 
